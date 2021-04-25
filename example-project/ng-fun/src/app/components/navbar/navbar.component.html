@@ -1,0 +1,57 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf="!authServ.isLoginPage()">
+  <a class="navbar-brand" href="#">NG FUN APP</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item ">
+        <a class="nav-link" [routerLink]="['/events']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">All Events </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/events/new']" routerLinkActive="active">Create Event</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Event
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+    </ul>
+
+    <div class="input-group col-4 mx-auto form-search">
+      <!-- <input type="text" class="form-control mr-sm-2" placeholder="Search Event" aria-label="Search Event" aria-describedby="basic-addon2">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary my-sm-0" type="button">Search</button>
+      </div>-->
+      <mat-form-field appearance="outline">
+        <mat-label>Search Events</mat-label>
+        <input matInput placeholder="Search Events">
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+    </div>
+    <ul class="navbar-nav my-auto">
+      <li class="nav-item dropdown dropleft" *ngIf="authServ.isAuthenticated()">
+        <a class="nav-link dropdown-toggle"  id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <img src="{{authServ.currentUser.imgUrl}}" width="40" height="40" class="rounded-circle">
+          <kbd>{{authServ.currentUser.userName}}</kbd>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" >
+          <a class="dropdown-item" >Dashboard</a>
+          <a class="dropdown-item" [routerLink]="['user']" >Edit Profile</a>
+          <a class="dropdown-item" (click)='logout()'>Log Out</a>
+        </div>
+      </li>
+      <li *ngIf="!authServ.isAuthenticated()">
+        <a [routerLink]="['login']">Login</a>
+      </li>
+    </ul>
+  </div>
+</nav>

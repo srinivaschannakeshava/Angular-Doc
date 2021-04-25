@@ -1,0 +1,10 @@
+<div>
+  <hr>
+  <h2>Upcomming Angular Event</h2>
+  <hr>
+  <div class="row">
+    <div class="col-4 my-2" *ngFor="let event of events" >
+      <app-event-thumbnail [event]="event" (votingClick)='handleVotingEvent($event)' (click)='displayTost(event)'></app-event-thumbnail>
+    </div>
+  </div>
+</div>
